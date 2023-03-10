@@ -1,0 +1,168 @@
+#include<stdio.h>
+
+#include<stdlib.h>
+
+struct Node
+{
+	int data;
+	struct Node *next;
+};
+struct Node *head;
+void insertStart();
+void insertAfterGivenNode();
+void insertEnd();
+void deleteStart();
+void deleteAfterGivenNode();
+void deleteEnd();
+void show();
+
+void main()
+{
+	int ch = 0;
+
+
+    while(ch != 8)
+    {
+    	printf("\n***** Linked List Operation *****");
+    	printf("\n 1] Insert at Start\n 2] Insert After Given Node\n 3] Insert at Last\n 4] Delete at Begining\n 5] Delete after given node\n 6] Delete at last\n 7] Show \n 8] Exit...");
+    	printf("\nEnter your choice = ");
+    	scanf("%d", &ch);
+    
+    	switch(ch)
+    	{
+    	     case 1 : insertStart();
+    		      break;
+    	     case 2 : insertAfterGivenNode();
+    		      break;
+    	     case 3 : insertEnd();
+    		      break;
+    	     case 4 : deleteStart();
+    		      break;
+    	     case 5 : deleteAfterGivenNode();
+    		      break;
+    	     case 6 : deleteEnd();
+    		      break;  
+    	     case 7 : show();
+    		      break;
+    	     case 8 : printf("exiting...");
+    		      break;
+    	    default : printf("\nEnter valide num ...");
+    	}
+    }
+}
+void insertStart()
+{
+	int givenValue;
+	struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+
+	printf("Enter the node value - ");
+	scanf("%d", &givenValue);
+
+	newNode -> data = givenValue;
+	newNode -> next = head;
+	head	        = newNode;
+	printf("\n New Node Inserted !");
+}
+void insertAfterGivenNode()
+{
+	int givenValue;
+	int prevNode;
+	struct Node *preptr   = (struct Node *) malloc (sizeof(struct Node));
+	struct Node *ptr      = (struct Node *) malloc (sizeof(struct Node));
+	struct Node *newNode  = (struct Node *) malloc (sizeof(struct Node));
+
+	ptr    = head;
+	preptr = ptr;
+
+	printf("Enter after which node - ");
+	scanf("%d", &prevNode);
+
+	printf("Enter the node value - ");
+	scanf("%d", &givenValue);
+
+	while( preptr -> data != prevNode)
+	{
+		preptr = ptr;
+		ptr    = ptr -> next;
+	}
+	newNode -> data = givenValue;
+	newNode -> next = ptr;
+	preptr  -> next = newNode;
+	printf("\n New Node Inserted !");
+}
+void insertEnd()
+{
+	int givenValue;
+	struct Node *ptr     = (struct Node *) malloc (sizeof(struct Node));
+	struct Node *newNode = (struct Node *) malloc (sizeof(struct Node));
+	ptr = head;
+
+	printf("Enter the node value - ");
+	scanf("%d", &givenValue);
+
+	while( ptr -> next != NULL)
+	{
+		ptr = ptr -> next;
+	}
+	newNode -> data = givenValue;
+	ptr 	-> next = newNode;
+	newNode -> next = NULL;
+	printf("\n New Node Inserted !");
+}
+void deleteStart()
+{
+	struct Node *ptr = (struct Node *) malloc(sizeof(struct Node));
+	ptr = head;
+	head = ptr -> next;
+	printf("\nDeleted Element = %d",ptr->data);
+	free(ptr);
+}
+void deleteAfterGivenNode()
+{
+    struct Node *ptr     = (struct Node*) malloc (sizeof(struct Node));
+    struct Node *preptr  = (struct Node*) malloc (sizeof(struct Node));
+    int prevNode , givenValue;
+    
+    ptr    = head;
+    preptr = ptr;
+    
+    printf("\n Enter the Previos node = ");
+    scanf("%d", &prevNode);
+
+    while( preptr -> data != prevNode)
+    {
+        preptr = ptr;
+        ptr    = ptr -> next; 
+    }
+    
+    preptr -> next = ptr -> next;
+    printf("\nDeleted Element = %d",ptr->data);
+    free(ptr);
+}
+void deleteEnd()
+{
+    struct Node *ptr = (struct Node *) malloc(sizeof(struct Node));
+    struct Node *preptr = (struct Node *) malloc(sizeof(struct Node));
+    ptr    = head;                 // start traversal from begining
+    preptr = ptr;
+    
+    while( ptr -> next != NULL) // NULL in Upper case
+    {
+        preptr = ptr;
+        ptr    = ptr -> next;
+    }
+    preptr -> next = NULL;
+    printf("\nDeleted Element = %d",ptr->data);
+    free(ptr);
+}
+void show()
+{
+	struct Node *ptr     = (struct Node *) malloc (sizeof(struct Node));
+	ptr = head;
+	printf("\nElements = ");
+	while( ptr != NULL)
+	{
+		printf(" %d  ", ptr -> data);
+		ptr = ptr -> next;
+	}
+}

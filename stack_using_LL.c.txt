@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdlib.h>         // for malloc(only one argument)
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+// declaration
+struct Node *head;          // TOP          
+void push();
+void pop();
+void display();
+void main()
+{
+    int ch=0;
+    while(ch != 4)
+    {
+        printf("\n\n*****Stack using Linked List*****");
+        printf("\n1] Push\n2] Pop\n3] Display\n4] Exit...");
+        printf("\nEnter Your choice = ");
+        scanf("%d", &ch);
+        switch(ch)
+        {
+            case 1  : push();                              break;
+            case 2  : pop();                               break;
+            case 3  : display();                           break;
+            case 4  : printf("\nExiting ... ");            break;
+            default : printf("\nEnter valid choice !");
+        }
+    }
+}
+void push()
+{
+    // allocating memery for the newNode
+    struct Node *newNode = (struct Node *) malloc (sizeof(struct Node));
+    if( newNode == NULL)    
+    {
+        printf("\nOverflow , system are unable to allocate the memory.");
+    }
+    else
+    {
+        int value;
+        printf("\nEnter the value of node = ");
+        scanf("%d", &value);
+        newNode -> data = value;
+        if( head == NULL)
+        {
+            // means it is first element in Stack. TOP = 0
+            newNode -> next = NULL;
+            head            = newNode;          // make newNode as Head
+        }
+        else
+        {
+            newNode -> next = head;             // copy the address of previos Head
+            head            = newNode;          // make newNode as Head (TOP)
+        }
+        printf("\nNew Node %d is inserted !", value);
+    }
+}
+void pop()
+{
+    if( head == NULL )              
+    {
+        printf("\nUnderflow !");
+    }
+    else
+    {
+        int deleted_Node;
+        struct Node *temp;
+        
+        deleted_Node = head -> data;
+        temp         = head;
+        head         = head -> next;
+        free(temp);
+        printf("\nDeleted Node = %d", deleted_Node);
+    }
+}
+void display()
+{
+    if( head == NULL )
+    {
+        printf("\n Stack is empty !");
+    }
+    else
+    {
+        struct Node *ptr;
+        ptr = head;
+        while(ptr != NULL)
+        {
+            while( head == ptr)                                 
+            {
+                printf("\nElement - %d <= TOP", ptr -> data);  
+                ptr = ptr -> next;
+            }
+            
+            printf("\nElement - %d", ptr -> data);
+            ptr = ptr -> next;
+        
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,228 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+// declaration
+struct Node *head;
+struct Node *front;
+struct Node *rear;
+void push();
+void pop();
+void stack_display();
+void insert();
+void delete();
+void queue_display();
+void main()
+{
+    int ch_1 =0;
+    while( ch_1 != 3)
+    {
+        printf("\n1] Stack Operation \n2] Queue Operation \n3] Exit");
+        printf("\nEnter your choice => ");
+        scanf("%d", &ch_1);
+        
+        switch(ch_1)
+        {
+            case 1 : 
+                    {
+                        int ch_2=0;
+                        while(ch_2 != 4)
+                        {
+                            printf("\n\n**Stack using Linked List**");
+                            printf("\n1] Push\n2] Pop\n3] Display\n4] Exit...");
+                            printf("\nEnter Your choice = ");
+                            scanf("%d", &ch_2);
+                            switch(ch_2)
+                            {
+                                case 1  : push();                              break;
+                                case 2  : pop();                               break;
+                                case 3  : stack_display();                           break;
+                                case 4  : printf("\nExiting ... ");            break;
+                                default : printf("\nEnter valid choice !");
+                            }
+                        }
+                    }
+                    break;
+            case 2 :
+                    {
+                        int ch_2 =0;
+                        while(ch_2 != 4)
+                        {
+                            printf("\n\n**Queue using Linked List**");
+                            printf("\n1] Insert\n2] Delete\n3] Display\n4] Exit...");
+                            printf("\nEnter Your choice = ");
+                            scanf("%d", &ch_2);
+                            switch(ch_2)
+                            {
+                                case 1  : insert();                            break;
+                                case 2  : delete();                            break;
+                                case 3  : queue_display();                           break;
+                                case 4  : printf("\nExiting ... ");            break;
+                                default : printf("\nEnter valid choice !");
+                            }
+                        }
+                    }
+                    break;
+            case 3 : printf("\n Exiting ... ");
+                    break;
+                    
+            default:("enter valid choice");
+        }
+    }
+}
+void push()
+{
+    // allocating memery for the newNode
+    struct Node *newNode = (struct Node *) malloc (sizeof(struct Node));
+    if( newNode == NULL)    
+    {
+        printf("\nOverflow , system are unable to allocate the memory.");
+    }
+    else
+    {
+        int value;
+        printf("\nEnter the value of node = ");
+        scanf("%d", &value);
+        newNode -> data = value;
+        if( head == NULL)
+        {
+            // means it is first element in Stack. TOP = 0
+            newNode -> next = NULL;
+            head            = newNode;          // make newNode as Head
+        }
+        else
+        {
+            newNode -> next = head;             // copy the address of previos Head
+            head            = newNode;          // make newNode as Head (TOP)
+        }
+        printf("\nNew Node %d is inserted !", value);
+    }
+}
+void pop()
+{
+    if( head == NULL )              
+    {
+        printf("\nUnderflow !");
+    }
+    else
+    {
+        int deleted_Node;
+        struct Node *temp;
+        
+        deleted_Node = head -> data;
+        temp         = head;
+        head         = head -> next;
+        free(temp);
+        printf("\nDeleted Node = %d", deleted_Node);
+    }
+}
+void stack_display()
+{
+    if( head == NULL )
+    {
+        printf("\n Stack is empty !");
+    }
+    else
+    {
+        struct Node *ptr;
+        ptr = head;
+        while(ptr != NULL)
+        {
+            while( head == ptr)                                 
+            {
+                printf("\nElement - %d <= TOP", ptr -> data);  
+                ptr = ptr -> next;
+            }
+            
+            printf("\nElement - %d", ptr -> data);
+            ptr = ptr -> next;
+        
+        }
+    }
+}
+
+void insert()
+{
+    struct Node *newNode = (struct Node *) malloc (sizeof (struct Node));
+    
+    if( newNode == NULL)
+    {
+        printf("\nOverflow , system are Unable to allocate memory !");
+    }
+    else
+    {
+        int value;
+        
+        printf("\nEnter the value of node = ");
+        scanf("%d", &value);
+        
+        newNode -> data = value;
+        
+        if( front == NULL)                //condition true when Queue is empty
+        {
+            front         = newNode;      //update
+            rear          = newNode;      //update
+            front -> next = NULL;
+            rear  -> next = NULL;         
+        }
+        else
+        {
+            rear -> next = newNode;      //append
+            rear         = newNode;      //update
+            rear -> next = NULL;
+        }
+        printf("\nNew Node %d is inserted !", value);
+    }
+}
+void delete()
+{   
+     int deleted_node;
+     struct Node *temp;
+     
+     if( front == NULL )
+     {
+         printf("\nUnderflow !");
+     }
+     else
+     {
+         deleted_node = front -> data;
+         temp         = front;
+         front        = front -> next;                  //update front
+         free(temp);                                    //memory deallocated
+         printf("\nDeleted node - %d", deleted_node);
+     }
+}
+void queue_display()
+{
+    struct Node *ptr;
+    ptr = front;
+    
+    if( front == NULL )
+    {
+        printf("\nQueue is empty !");
+    }
+    else
+    {
+        while( ptr != NULL)
+        {
+            if(ptr == front)
+            {
+                printf("\n Element = %d <= Front", ptr->data);
+                ptr = ptr -> next;               
+            }
+            else if(ptr == rear)
+            {
+                printf("\n Element = %d <= Rear", ptr->data);
+                ptr = ptr -> next;               
+            }
+            else
+            {
+                printf("\n Element = %d", ptr->data);
+                ptr = ptr -> next;               
+            }
+        }
+    }
+}

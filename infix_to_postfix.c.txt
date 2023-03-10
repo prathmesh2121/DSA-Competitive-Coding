@@ -1,0 +1,149 @@
+
+#include<stdio.h>
+#include <ctype.h>
+#define size 50
+char stack[size];       // array of char with 50 size
+int top = -1;           // initially top at -1
+
+void push(char x)
+{
+    top ++;
+    stack[top] = x;
+}
+
+char pop()
+{
+    char temp;
+    temp = stack[top];
+    top--;
+    return temp;
+}
+int input_priorirty(char symbol)
+{
+    if(symbol == '^')
+    {
+        return (6);
+    }
+    else if(( symbol == '/') || ( symbol == '%') || (symbol == '*'))
+    {
+        return (3);
+    }
+    else if(( symbol == '+' ) || ( symbol == '-' ))
+    {
+        return (1);
+    }
+    else
+    {
+        return (0);
+    }
+    
+}
+int stack_priority(char symbol)
+{
+    if(symbol == '^')
+    {
+        return (5);
+    }
+    else if(( symbol == '/') || ( symbol == '%') || (symbol == '*'))
+    {
+        return (4);
+    }
+    else if(( symbol == '+' ) || ( symbol == '-' ))
+    {
+        return (2);
+    }
+    else
+    {
+        return (0);
+    }
+}
+void main()
+{
+    char infix[50];
+    char postfix[50];
+    char ch;
+    int j=0;
+    int len=0;
+    int i=0;
+    // for tracking infix array
+    int k=0;
+    // for tracking postfix array
+    char elem;
+    
+    printf("\nEnter the length of Infix Expression - ");
+    scanf("%d", &len);
+    printf("\nEnter your Infix Expression - ");
+    for(j=0; j<len; j++)
+    {
+        scanf("%c", &infix[j]);
+    }
+    printf("\nControl here");
+    
+    //scanning in form of string, without & address
+    
+   
+    
+    push('#');
+    // a temparory element added, to know where is the end of stack
+    
+    //first infix[i] is stored in ch then comparison has been made
+    //check whether ch is NULL or not , if it is NULL then control goes to out of loop
+    while( ch=(infix[i]) != '\0')
+    {
+        if( ch == '(')
+        {
+            push(ch);
+        }
+        else if( isalnum(ch) )
+        {
+            postfix[k++] = ch;
+            //first put ch in kth location
+            //then k++
+        }
+        else if( ch == ')')
+        {
+            while( stack[top] != '(')
+            {
+                postfix[k++] = pop();
+            }
+            elem = pop();
+            // **MAY BE** - for storing the opening brace
+        }
+        else    
+        //when ch is operator
+        {
+            //means input has greater or equal priority than stack of top_priority
+            //eg: input = + and top = * then * will be poped and inserted into postfix
+            //pop() can be performend multiple times hence it is in while loop
+            while( input_priorirty(ch) <= stack_priority(stack[top]))
+            {
+                postfix[ k++ ] = pop();
+            }
+            //and latter after pop() input char is pushed
+            //2nd case
+            //if input priority is greater than the top priority
+            //then it is directly PUSH() in to stack , no need to POP()
+            push(ch);
+        }
+        i++;    // increment i
+    }           // end - while
+    
+    
+    while( stack[top] != '#') 
+    {
+        postfix[k++] = pop();
+        //top--;   
+    }
+    //make postfix as a valid string
+    postfix[k] = '\0';  
+    
+    printf("\nPostfix Expression : ");
+    for(j = 0; j<len; j++)
+    {
+        printf(" %c ", postfix[j]);
+    }
+    
+}
+
+
+

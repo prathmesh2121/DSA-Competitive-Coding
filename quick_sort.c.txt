@@ -1,0 +1,77 @@
+//REFFERENCE FROM JENNY'S LECTURE
+
+#include <stdio.h>
+
+void quicksort(int a[], int lb, int ub);
+int partition(int a[], int lb, int ub);         // if these function defition are define before main function then no need to declare function as it.
+
+
+void main()
+{
+    int i,n,lb,ub;
+    
+    printf("\n Enter the size of array  => ");
+    scanf("%d", &n);
+    
+    int a[n];
+    
+    printf("\n Enter the array elements => ");
+    for( i = 0; i < n; i++)
+    {
+        scanf("  %d", &a[i]);
+    }
+    
+    lb = 0;
+    ub = n-1;
+    quicksort(a, lb, ub);
+    printf("\nSorted array => ");
+    
+    for(i = 0; i < n; i++)
+    {
+        printf(" %d ", a[i]);
+    }
+}
+void quicksort(int a[], int lb, int ub)
+{
+    int loc;
+    if( lb < ub)
+    {
+        loc = partition(a, lb, ub);
+        quicksort(a, lb, loc-1);        //left partition
+        quicksort(a, loc+1 , ub);       //right partition
+    }
+}
+int partition(int a[], int lb, int ub)
+{
+    int pivot, start, end, temp;
+    
+    pivot = a[lb];
+    start = lb;
+    end   = ub;
+    
+    while( start < end)
+    {
+        while( a[start] <= pivot)
+        {
+            start++;
+        }
+        while( a[end] > pivot)
+        {
+            end--;
+        }
+        if( start < end)
+        {
+            int temp;
+    
+            temp   = a[start];
+            a[start]  = a[end];
+            a[end] = temp;
+        }
+    }
+    
+    temp   = a[lb];
+    a[lb]  = a[end];
+    a[end] = temp;
+    printf("\nswap done");
+    return end;
+}

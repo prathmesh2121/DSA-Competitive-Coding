@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<conio.h>
+
+
+void merge(int a[], int min, int mid, int max)
+{
+    int i, j, k, m = 0;
+    int temp[10];
+    
+    j = min;                                                    // follows LEFT
+    k = mid + 1;                                                // follows RIGHT
+    
+    for( i = min; (j <= mid && k <= max) ; i++)
+    {
+        if( a[j] <= a[k])                                       // if left is smaller than right item
+        {
+            temp[i] = a[j];
+            j++;                                                // increase left ptr
+        }
+        else
+        {
+            temp[i] = a[k];
+            k++;                                                // increase right ptr
+        }
+    }
+   
+    if ( j > mid)                      // when left array's element is all copied
+    {
+        for( m = k; m <= max ; m++)    // m is basic iterator 
+        {
+            temp[i] = a[m];
+            i++;                       // i ptr following TEMP
+        }
+    }
+    else                               // when right array's element is all copied
+    {
+        for( m = j; m <= mid; m++)
+        {
+            temp[i] = a[m];
+            i++;
+        }
+    }
+    for( i = min; i <= max ; i++)
+    {
+        a[i] = temp[i];
+    }    
+}
+void partition(int a[], int min, int max)
+{
+    int mid;
+    if( min < max )                             //when MIN != MAX
+    {
+        mid = (min + max) / 2;
+        
+        partition(a, min   , mid);              //left
+        partition(a, mid+1 , max);              //right
+        
+        merge(a, min, mid, max);
+    }
+
+}
+void main()
+{
+    int max = 10;
+    
+    int a[10] = {9,1,8,2,7,3,6,4,5,0};
+    clrscr();
+
+    printf("\nBefore Sorting - ");
+    for(int i = 0 ; i < max; i++)
+    {
+        printf(" %d ", a[i]);
+    }
+    
+    partition(a, 0 , max);
+    
+    printf("\nAfter Sorting  - ");
+    for(int i = 0 ; i < max; i++)
+    {
+        printf(" %d ", a[i]);
+    }
+    getch();
+}

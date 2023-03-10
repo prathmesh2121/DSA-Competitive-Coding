@@ -1,0 +1,100 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+};
+struct Node *createNode(int x)
+{
+    struct Node *newNode = (struct Node *) malloc (sizeof(struct Node));
+    newNode -> data = x;
+    newNode -> left = NULL;                 //initially keep it as NULL
+    newNode -> right = NULL; 
+    return newNode;
+}
+struct Node *preOrder(struct Node *n)
+{
+    
+    if( n != NULL)
+    {
+        printf(" %d " , n -> data);
+        preOrder(n -> left);
+        preOrder(n -> right);
+    }
+}
+struct Node *postOrder(struct Node *n)
+{
+    if( n != NULL)
+    {
+        postOrder(n -> left);
+        postOrder(n -> right);
+        printf(" %d ", n -> data);
+        
+    }
+}
+struct Node *inOrder(struct Node *n)
+{
+    if( n != NULL)
+    {
+        inOrder(n -> left);
+        printf(" %d ", n -> data);
+        inOrder(n -> right);
+    }
+    
+}
+void main()
+{
+    struct Node *firstNode  = createNode(10);
+    struct Node *secondNode = createNode(20);
+    struct Node *thirdNode  = createNode(30);
+    struct Node *forthNode  = createNode(40);
+    struct Node *fifthNode  = createNode(50);
+    struct Node *sixthNode  = createNode(60);
+    struct Node *seventhNode= createNode(70);
+    struct Node *eighthNode = createNode(80);
+    struct Node *ninthNode  = createNode(90);
+    struct Node *tenthNode  = createNode(100);
+    
+    /*
+                        10
+                       /  \
+                      20   30
+                     /  \
+                    40   50
+                      \    \
+                      60    70
+                           /  \
+                          80   90
+                         /
+                        100
+    */
+        
+    firstNode -> left  = secondNode;
+    firstNode -> right = thirdNode;
+    
+    secondNode -> left = forthNode;
+    secondNode -> right = fifthNode;
+    
+    forthNode -> right = sixthNode;
+    
+    fifthNode -> right = seventhNode;
+    
+    seventhNode -> left  = eighthNode;
+    seventhNode -> right = ninthNode;
+    
+    eighthNode -> left = tenthNode;
+    
+    
+    printf("\n preOrder  : ");
+    preOrder(firstNode);
+    
+    printf("\n postOrder : ");
+    postOrder(firstNode);
+    
+    printf("\n inOrder   : ");
+    inOrder(firstNode);
+    
+}    

@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int expo;
+    int power;
+    struct Node *next;
+};
+struct Node *poly_1      = NULL;
+struct Node *poly_2      = NULL;
+struct Node *poly_result = NULL;
+
+void create(struct Node *poly_node)
+{
+    int t=0, i=0;
+    printf("\nHow many terms you want : ");
+    scanf("%d", &t);
+    while(t != i)
+    {
+        if( poly_node )
+        {
+            printf("\nEnter the exponential : ");        
+            scanf("%d", &poly_1 -> expo);
+            
+            printf("\nEnter the Power : ");
+            scanf("%d", &poly_1 -> power);
+            
+            poly_node -> next = (struct Node *) malloc (sizeof(struct Node));
+            poly_node = poly_node -> next;
+            poly_node -> next = NULL;
+        }
+        i++;
+    }
+}
+void add(struct Node *poly_1, struct Node *poly_2, struct Node *poly_result)
+{
+    while((poly_1->next ) || (poly_2->next ))
+    {
+        if(poly_1 -> power > poly_2 -> power)
+        {
+            poly_result -> expo  = poly_1 -> expo;
+            poly_result -> power = poly_1 -> power; 
+            poly_1 = poly_1 -> next;                    //increament
+        }
+        else if(poly_1 -> power < poly_2 -> power)
+        {
+            poly_result -> expo  = poly_2 -> expo;
+            poly_result -> power = poly_2 -> power;
+            poly_2 = poly_2 -> next;                    //increament
+        }
+        else        // if both power are same then do addion
+        {
+            poly_result -> expo  = poly_1->expo ;
+            poly_result -> power = poly_1 -> power + poly_2 -> power;
+            poly_1 = poly_1 -> next;                    //increament
+            poly_2 = poly_2 -> next;                    //increament
+        }
+        poly_result -> next = (struct Node *) malloc (sizeof(struct Node));
+        poly_result = poly_result -> next;
+        poly_result -> next = NULL;
+    }
+    while (poly_1 -> next || poly_2 -> next)    // for all remaning terms
+    {
+        if(poly_1 ->next)   
+        {
+            poly_result -> expo = poly_1 -> expo;
+            poly_result -> power = poly_1 -> power;
+            poly_1 = poly_1 -> next;
+        }
+        if(poly_2 -> next)
+        {
+            poly_result -> expo = poly_2 -> expo;
+            poly_result -> power = poly_2 -> power;
+            poly_2 = poly_2 -> next;
+        }
+        poly_result -> next = (struct Node *) malloc (sizeof(struct Node));
+        poly_result = poly_result -> next;
+        poly_result -> next = NULL;
+    }
+}
+void show(struct Node *shownode)
+{
+    //if(shownode == NULL)
+    
+        printf("\n Result => ");
+    
+    while( shownode-> next != NULL)
+    {
+        printf(" %dx^%d ",shownode -> expo , shownode -> power);
+        shownode = shownode -> next;
+    }
+    
+}
+void main()
+{
+    poly_1      = (struct Node *) malloc (sizeof(struct Node));
+    poly_2      = (struct Node *) malloc (sizeof(struct Node));
+    poly_result = (struct Node *) malloc (sizeof(struct Node));
+    
+    printf("\n***FIRST POLYNOMIAL***");
+    create(poly_1);
+    
+    printf("\n***SECOND POLYNOMIAL***");
+    create(poly_2);
+    
+    add(poly_1, poly_2, poly_result);
+    
+    printf("\nAdded polynomial");
+    show(poly_result);
+}
+
