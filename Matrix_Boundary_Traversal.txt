@@ -1,0 +1,101 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// Time Complexity = Theta(Row + Cols)
+
+// } Driver Code Ends
+
+class Solution
+{   
+    public:
+    //Function to return list of integers that form the boundary 
+    //traversal of the matrix in a clockwise manner.
+    vector<int> boundaryTraversal(vector<vector<int> > matrix, int n, int m)
+    {
+        vector<int> v1;
+        
+        if(n == 1 || m == 1)
+        {
+           for(int i=0; i<n; i++)
+           {
+               for(int j=0; j<m; j++)
+               {
+                   v1.push_back(matrix[i][j]);
+               }
+           }
+           return v1;
+        }
+        
+        
+        
+        
+        
+        for(int i=0; i<n; i++)
+        {
+            if(i==0)        // TOP
+            {
+                for(int j=0;j<m; j++)
+                {
+                    v1.push_back(matrix[i][j]);        // TOP & BOTTOM
+                }    
+            }
+            else if(i < n )
+            {
+                v1.push_back(matrix[i][m-1]);
+            }
+            
+        }
+            {
+                //v1.push_back(999);
+                for(int j=m-2; j>=0; j--)
+                {
+                    v1.push_back(matrix[n-1][j]);
+                }
+            }
+        
+        int x = n-2;
+        while(x > 0)
+        {
+            v1.push_back(matrix[x][0]);
+            x--;
+        }
+        
+        
+        
+        
+        return v1;
+     
+    }
+};
+
+
+//{ Driver Code Starts.
+int main() {
+    int t;
+    cin>>t;
+    
+    while(t--) 
+    {
+        int n,m;
+        cin>>n>>m;
+        vector<vector<int> > matrix(n); 
+
+        for(int i=0; i<n; i++)
+        {
+            matrix[i].assign(m, 0);
+            for( int j=0; j<m; j++)
+            {
+                cin>>matrix[i][j];
+            }
+        }
+
+        Solution ob;
+        vector<int> result = ob.boundaryTraversal(matrix, n, m);
+        for (int i = 0; i < result.size(); ++i)
+                cout<<result[i]<<" ";
+        cout<<endl;
+    }
+    return 0;
+}
+// } Driver Code Ends
