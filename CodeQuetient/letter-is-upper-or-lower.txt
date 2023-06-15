@@ -1,0 +1,17 @@
+#include <stdio.h>
+int main()
+{
+	char c;
+  scanf("%c", &c);
+  
+  if( 65 <= c && c <= 90 )
+  {
+    printf("UPPER");
+}
+  else if( 97 <= c && c <= 122)
+  {
+    printf("lower");
+}
+  
+    return 0;
+}

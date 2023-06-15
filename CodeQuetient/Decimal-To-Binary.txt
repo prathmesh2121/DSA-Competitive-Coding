@@ -1,0 +1,18 @@
+// print the binary equivalent of the given number 'n'
+void decimalToBinary(int n) 
+{
+	int temp = n;
+  int x;
+  int rem = 0;
+  string str = "";
+  while(temp > 0)
+  {
+    rem = temp % 2;
+    temp = temp / 2;
+    string c = to_string(rem);
+    str.insert(0,c);
+    
+	}
+  cout<<str;
+  
+}
