@@ -1,0 +1,14 @@
+void fib_sequence(int n) 
+{
+  long fib=0;
+  long a=0,b=1;
+	while(n--)
+    {
+       cout<<fib<<endl;
+       
+       a = b;
+       b = fib;
+       fib = a + b;
+	}
+  
+}

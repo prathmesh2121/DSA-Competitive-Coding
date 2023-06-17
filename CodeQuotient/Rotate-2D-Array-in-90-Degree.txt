@@ -1,0 +1,55 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+using namespace std;
+int main()
+{
+  int tc;
+  cin>>tc;
+  while(tc--)
+  {
+    int n;
+    cin>>n;
+    int mat[n][n];
+    int mat2[n][n];
+    
+    for(int i=0; i<n; i++)
+    {
+      for(int j=0; j<n; j++)
+      {
+        cin>>mat[i][j];
+	  }
+	}
+    
+    int r=0, c=n-1;
+    for(int i=0; i<n; i++)
+    {
+        r = 0;
+      	for(int j=0; j<n; j++)
+        {
+          	mat2[r][c] = mat[i][j];
+            r++;
+        }
+       c--;
+    }
+    for(int i=0; i<n; i++)
+    {
+      for(int j=0; j<n; j++)
+      {
+        //cout<<mat2[i][j]<<" ";
+        if(j == n-1)
+        {
+          cout<<mat2[i][j];
+		}
+        else
+        {
+          cout<<mat2[i][j]<<" ";
+		}
+	  }
+      cout<<endl;
+	}
+   cout<<endl;
+    	
+  }
+   return 0;
+}

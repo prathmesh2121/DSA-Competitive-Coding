@@ -1,0 +1,29 @@
+void counterDiagonal(int mat[N][N], int n) 
+{
+     cout<<mat[0][0]<<" ";
+  	 int r = 0, c = 0;
+     for(int i=1; i<n; i++) // columns - top
+     {
+       c = i;
+       r = 0;			//everytime starting from TOP
+       while(c>=0)
+       {
+            cout<<mat[r][c]<<" ";
+            r++;
+        	c--;
+       }
+     }
+  	 for(int j=1; j<n; j++) // ROWs - right
+     {
+         c = n-1;
+       	 r = j;//?
+         while(r < n)  // c > 0
+         {
+           cout<<mat[r][c]<<" ";
+           r++;
+           c--;
+		 }
+	 }
+  //cout<<mat[n-1][n-1];
+  
+}

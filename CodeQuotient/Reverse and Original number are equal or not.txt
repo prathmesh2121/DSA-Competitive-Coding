@@ -1,0 +1,35 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+using namespace std;
+int main()
+{
+  int a;
+  cin>>a;
+  int rem;
+  int rev = 0;
+  int temp = a;
+  
+  while(a != 0)
+  {
+     rem = a % 10;
+     a = a / 10;
+     rev = rev *10 + rem;
+	}
+  
+  if(rev == temp)
+  {
+    cout<<"Equal";
+  }
+  else
+  {
+    cout<<"Not Equal";
+	}
+   
+  
+  
+   
+  
+  
+   return 0;
+}

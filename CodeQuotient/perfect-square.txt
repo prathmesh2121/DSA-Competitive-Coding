@@ -1,0 +1,23 @@
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+using namespace std;
+bool isSquare(int a)
+{
+    int x = sqrt(a);
+    return(x*x == a);
+}
+
+int main()
+{
+ 	int a;
+  cin>>a;
+  if(isSquare(a))
+  {
+    cout<<"yes";
+	}
+  else
+  {
+    cout<<"no";
+  }
+}

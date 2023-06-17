@@ -1,0 +1,21 @@
+bool isPalindrome(string str) 
+{
+  	int n = str.length();
+    
+  int i=0; int j=n-1;
+  //bool flag = true;
+  while(i<j)
+  {
+    if(str[i] != str[j])
+    {
+      //flag = false;
+      return false;
+	}
+    i++;
+    j--;
+  }
+  return true;
+  
+  	
+  
+}

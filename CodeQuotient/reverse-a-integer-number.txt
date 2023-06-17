@@ -1,0 +1,19 @@
+#include <stdio.h>
+/* Include other headers as needed */
+int main()
+{
+	int num;
+    int rem;
+  	int rev = 0;
+    scanf("%d", &num);
+  	int temp = num;
+    while(temp >0)
+    {
+      rem = temp % 10;
+      temp = temp / 10;
+      rev = rev * 10 + rem;
+	}
+  	printf("%d",rev);
+   
+    return 0;
+}
