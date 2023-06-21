@@ -1,0 +1,14 @@
+struct Node *pre, *cur, *next;
+  pre = NULL;
+  cur = head;
+  next = NULL;
+  
+  while(cur != NULL)
+  {
+    next = cur->next;
+    cur->next = pre;
+    pre = cur;
+    cur = next;
+  }
+  head = pre;
+  return head;

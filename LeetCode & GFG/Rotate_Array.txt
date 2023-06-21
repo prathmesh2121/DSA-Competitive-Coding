@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void reverse(vector<int>& arr, int low, int high)
+    {
+            while(low < high)
+            {
+                //swap(low,high);
+            int temp = arr[high];
+            arr[high] = arr[low];
+            arr[low] = temp;
+            
+                low++;
+                high--;
+            }
+    }
+    void rotate(vector<int>& arr, int k) 
+    {
+        int n=(int)arr.size();
+         k = k % n;
+
+        reverse(arr, 0, n-k-1);
+        reverse(arr, n-k, n-1);
+        reverse(arr, 0, n-1);
+    }
+};

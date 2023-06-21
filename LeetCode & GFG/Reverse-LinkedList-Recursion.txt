@@ -1,0 +1,25 @@
+struct ListNode* h;
+    void rev(struct ListNode* p)
+    {
+        if(p->next == NULL)
+        {
+            h = p;
+            return;
+        }
+        rev(p->next);
+        struct ListNode *q;
+        q = p->next;
+        q->next = p;
+        p->next = NULL;
+    }
+    ListNode* reverseList(ListNode* head) 
+    {
+        h = head;
+        if(head != NULL)
+        {
+            rev(head);    
+        }
+        
+        return h;
+  
+    }

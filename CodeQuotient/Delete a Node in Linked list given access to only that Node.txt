@@ -1,0 +1,12 @@
+void deleteNode(Node* n) 
+{
+  if(n == NULL || n->next == NULL)
+  {
+    return;
+  }
+   
+    Node* next = n->next;
+   n->data = next->data;
+   n->next = next->next;
+
+}

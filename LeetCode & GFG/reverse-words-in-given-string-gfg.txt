@@ -1,0 +1,31 @@
+
+class Solution
+{
+    public:
+    //Function to reverse words in a given string.
+    string reverseWords(string str) 
+    { 
+        //2nd
+        string ans = "";
+        int start = str.length()-1;
+        // ans.append(str, 0, 1);
+        // ans.append(".");
+        
+        // ans.append(str, 1+1, 4);
+        // ans.append(".");
+        
+        for(int i=str.length()-1; i>=0; i--)
+        {
+            
+            if(str[i] == '.') // && i != str.length()-1)
+            {
+                //ans.append(str[0], str[i+1]); // ?
+                ans.append(str, i+1, (start - i));
+                ans.append(".");
+                start = i-1;
+            }
+        }
+        ans.append(str,0, start+1 );
+        return ans;
+    } 
+};
