@@ -1,0 +1,36 @@
+        // 0   1   2   3   4   5   6   7    8       idx
+        // 1   8   6   2   5   4   8   3    7       value
+        //         i   
+        //                 j
+        // max = min(a[i],a[j])*(j-i)
+        // max => 8 >  49 > 18 > 40 > 12
+        // small = move i++ OR j-- OR BOTH
+        // i++ j-- j-- (i++ j--) j--
+        
+        int n = len;
+        int i=0, j=n-1;
+        int mx=0;
+        
+        while(i<j)
+        {
+            int idx = min(a[i], a[j]);
+            int v = idx * (j-i);
+            if(mx < v)
+            {
+                mx = v;
+            }
+            if(a[i] < a[j])
+            {
+                i++;
+            }
+            else if(a[i] > a[j])
+            {
+                j--;
+            }
+            else
+            {
+                i++;
+                j--;
+            }
+        }
+        return mx;

@@ -1,0 +1,15 @@
+	queue<string> q1;
+	vector<string> v1;
+	
+	q1.push("1");
+	
+	for(int i=0; i<n ;i++)
+	{
+	    string x = q1.front();
+	    v1.push_back(x);
+	    q1.pop();
+	    q1.push(x+"0");
+	    q1.push(x+"1");
+	    
+	}
+	return v1;
