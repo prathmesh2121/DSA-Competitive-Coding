@@ -1,0 +1,12 @@
+   int sum = 0;
+        int arr[] = new int[input2];
+        int n = input2;
+        arr[n-1] = input1[n-1];     // last default
+        sum += arr[n-1];
+        for(int i=n-2; i>=0; i--)
+        {
+            arr[i] = input1[i]-arr[i+1];
+            sum +=arr[i];
+        }
+        Result r = new Result(arr[0],sum);
+        return r;
