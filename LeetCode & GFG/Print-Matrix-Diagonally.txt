@@ -1,0 +1,41 @@
+	vector<int> downwardDiagonal(int n, vector<vector<int>> a)
+	{
+	    int row = 0;
+	    int col = 0;
+	    vector<int> v1;
+	    
+	    while(col < n)
+	    {
+	        int r = row;
+	        int c = col;
+	        
+	        while(r < n && c >= 0)
+	        {
+	               v1.push_back(a[r][c]);
+	               r++;
+	               c--;
+	        }
+	        col++;
+	    }
+	    col--;
+	     row = 1;
+	     col = n-1;
+	    
+	    while(row < n)
+	    {
+	        int r = row;
+	        int c = col;
+	        
+	        while(c >= 0 && r < n)
+	        {
+	            
+    	        v1.push_back(a[r][c]);
+    	        r++;
+    	        c--;
+	        }
+	        row++;
+	    }
+	    
+	    return v1;
+	    
+	}

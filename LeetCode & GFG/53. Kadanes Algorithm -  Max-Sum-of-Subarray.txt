@@ -1,0 +1,38 @@
+ int maxSubArray(vector<int>& nums) 
+    {
+        int sum=0; int maxsum=nums[0];
+        int n = nums.size();
+        int negMax = -999999;
+        bool flag = false;
+        for(int i=0; i<n; i++)
+        {
+            if(nums[i] >= 0)
+            {
+                flag = true;
+                break;
+            }
+            if(negMax < nums[i])
+            {
+                negMax = nums[i];
+            }
+        }
+        if(flag == false)
+        {
+            return negMax;
+        }
+        for(int i=0; i<n; i++)
+        {
+            sum += nums[i];
+            if(sum < 0)
+            {
+                sum = 0;
+            }
+            if(sum > maxsum)
+            {
+                maxsum = sum;
+            }
+        }
+        return maxsum;
+
+        
+    }

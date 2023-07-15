@@ -1,0 +1,21 @@
+   ArrayList<Integer> a1 = new ArrayList<>();
+        int n = input1;
+
+        while(n>0)
+        {
+            int x = n%10;
+            n /=10;
+            a1.add(x);
+        }
+        Collections.reverse(a1);
+        int sum=0;
+        for(int i=0; i<a1.size(); i++)
+        {
+            int s=0;
+            for(int j=i; j<a1.size(); j++)
+            {
+                s+=a1.get(j);
+            }
+            sum += s;
+        }
+        return sum;
