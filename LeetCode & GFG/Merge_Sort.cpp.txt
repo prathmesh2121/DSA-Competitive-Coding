@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+int arr2[5];
+void merge(int arr[],int low,int mid, int high)
+{
+    int i=low;
+    int j=mid+1;
+    int x=low;
+    
+    while(i <= mid && j <= high)
+    {
+        if(arr[i] <= arr[j])
+        {
+            arr2[x] = arr[i];     
+            i++;
+        }
+        else
+        {
+            arr2[x] = arr[j];   
+            j++;
+        }
+        x++;    
+    }
+    
+    while(i <= mid)
+    {
+        
+        arr2[x] = arr[i];
+        i++;
+        x++;
+    }
+    
+    while(j <= high)
+    {
+        
+        arr2[x] = arr[j];
+        j++;
+        x++;
+    }
+    for (int i = low; i <= high; i++) 
+    {
+        arr[i] = arr2[i];
+    }
+    
+}
+
+void merge_sort(int arr[], int low, int high)
+{
+    if(low < high)
+    {
+        int mid = low + (high-low) / 2;
+        
+        merge_sort(arr, low, mid);
+        merge_sort(arr, mid+1, high);
+        
+        merge(arr, low,mid, high);
+    }
+}
+
+int main()
+{
+    cout<<endl<<"Merge Sort 1 "<<endl;
+    int n=5;
+    int arr[] = {8,7,1,44,5};
+    
+    merge_sort(arr,0,n-1);
+    
+    for(int i=0; i<n; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    
+    cout<<endl<<"Merge Sort 2 "<<endl;
+    for(int i=0; i<n; i++)
+    {
+        cout<<arr2[i]<<" ";
+    }
+    return 0;
+}
