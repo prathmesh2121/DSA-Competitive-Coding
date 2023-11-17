@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+
+pair<int,int> missingAndRepeating(vector<int> &arr, int n)
+{
+	unordered_map<int, int> m1;
+	int rep = -1;
+	int mis = -1;
+
+	for(int i=0; i<n; i++)
+	{
+		m1[arr[i]]++;
+		
+		if(m1[arr[i]] > 1)
+		{
+			rep = arr[i];
+		}
+		
+	}
+	for(int i=1; i<=arr.size(); i++)
+	{
+		if(m1[i] == 0)
+		{
+			mis = i;
+		}
+	}
+	pair<int, int> p1 = make_pair(mis, rep);
+	return p1;
+
+	
+}

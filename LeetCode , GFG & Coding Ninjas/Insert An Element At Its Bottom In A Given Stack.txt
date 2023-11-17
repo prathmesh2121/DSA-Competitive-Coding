@@ -1,0 +1,22 @@
+#include <bits/stdc++.h> 
+
+void helper(stack<int>& s1, int x)
+{
+    if(s1.empty())
+    {
+        s1.push(x);
+        return;
+    }
+   
+    int y = s1.top();
+    s1.pop();
+    
+
+    helper(s1,x);
+    s1.push(y);
+}
+stack<int> pushAtBottom(stack<int>& s1, int x) 
+{
+    helper(s1, x);
+    return s1;
+}

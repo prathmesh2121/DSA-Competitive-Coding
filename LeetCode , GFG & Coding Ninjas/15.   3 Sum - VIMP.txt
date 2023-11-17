@@ -1,0 +1,57 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& arr) 
+    {
+        int n=arr.size();
+        sort(arr.begin(), arr.end());
+        int c = arr[0];
+        vector<vector<int>> v1;
+
+        for(int i=0; i<n; i++)
+        {
+            if(i > 0 && arr[i] == arr[i-1])
+            {
+                continue; //skip the iteration of loop
+            }
+            else
+            {
+               // c = arr[i];     //constant
+                int a = i+1;    //low
+                int b = n-1;    ///high
+                
+
+                while(a < b)
+                {
+                    int sum = arr[a] + arr[b] + arr[i];
+                    if(sum == 0)
+                    {
+                       v1.push_back({arr[a], arr[b], arr[i]});
+                       
+                        a++;
+                        b--;
+
+                        while(a < b && arr[a] == arr[a-1])
+                        {
+                            a++;
+                        }
+                        
+                        while(a < b && arr[b] == arr[b+1])
+                        {
+                            b--;
+                        }
+                    }
+                    else if(sum > 0)
+                    {
+                        b--;
+                    }
+                    else  
+                    {
+                        a++;
+                    }
+                }
+            }
+           
+        }
+         return v1;
+    } 
+};

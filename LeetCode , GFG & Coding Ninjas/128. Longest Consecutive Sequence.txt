@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) 
+    {
+        set<int> s1;
+
+        for(auto i : nums)
+        {
+            s1.insert(i);
+        }
+        int streakLong = 0;
+        for(auto j : nums)
+        {
+           int currentStreak;
+            if(!s1.count(j-1)) //if previous element is not exist
+            {
+                int currentNum = j;
+                  currentStreak = 1;
+
+                while(s1.count(j+1))
+                {
+                    j++;
+                    currentStreak++;
+                }
+            }
+            streakLong = max(currentStreak, streakLong);
+        }
+        return streakLong;
+    }
+};

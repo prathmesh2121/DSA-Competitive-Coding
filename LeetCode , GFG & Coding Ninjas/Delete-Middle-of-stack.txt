@@ -1,0 +1,23 @@
+#include <bits/stdc++.h> 
+void helper(stack<int>&inputStack, int size, int i)
+{
+   
+   if(i == (size/2))
+   {
+      inputStack.pop();
+      return;
+   }
+   int x = inputStack.top();
+   inputStack.pop();
+      helper(inputStack,size,i+1);
+   
+   inputStack.push(x);
+
+}
+void deleteMiddle(stack<int>&inputStack, int N)
+{
+   int i=0;
+	 helper(inputStack, N, i);
+  
+   
+}
