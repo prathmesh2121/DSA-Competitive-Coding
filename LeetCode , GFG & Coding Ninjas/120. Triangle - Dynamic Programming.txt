@@ -1,0 +1,32 @@
+class Solution {
+public:
+int solve(vector<vector<int>> &t, int n,vector<vector<int>> &dp, int i, int j)
+{
+	int x = t[i][j];	// current
+	if(i == n-1)		// last item / bottom
+	{
+		return x;
+	}
+
+	if(dp[i][j] != -1) // if Already visited
+	{
+		return dp[i][j];	// current and next 
+	}
+
+	//int sum = x + (min(solve(t, n, dp, i+1, j), solve(t, n, dp, i+1, j+1))); // Error Might
+	int a = x + solve(t, n, dp, i+1, j);
+	int b = x + solve(t, n, dp, i+1, j+1);
+	dp[i][j] = min(a,b);
+	return dp[i][j];
+}
+    int minimumTotal(vector<vector<int>>& t) 
+    {
+        int n = t.size();
+        	vector<vector<int>> dp(n, vector<int>(n, -1));
+            int i = 0;
+            int j = 0;
+
+            int y = solve(t, n, dp, i, j);
+            return ( y);
+    }
+};

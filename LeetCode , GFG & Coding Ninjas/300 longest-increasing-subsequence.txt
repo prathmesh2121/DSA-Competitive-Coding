@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) 
+    {
+        int n = nums.size();
+        int dp[n];
+
+        dp[0] = 1;      // 1st item | individual lenght as 1 always
+
+        for(int i=1; i<n; i++)
+        {
+            dp[i] = 1;  // ith item | individual lenght as 1 INITIALY
+            for(int j=0; j<i; j++)   // go through all left elements
+            {
+                if(nums[j] < nums[i])   // find smaller element than current - i
+                {
+                    dp[i] = max(dp[j]+1 , dp[i]);
+                }
+            }
+        }
+        int result = -1;
+        for(int i=0; i<n; i++)
+        {
+            result = max(result, dp[i]); // finding the MAX
+        }
+        return result;
+    }
+};

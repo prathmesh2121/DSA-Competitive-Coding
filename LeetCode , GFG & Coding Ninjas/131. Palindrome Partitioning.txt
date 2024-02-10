@@ -1,0 +1,38 @@
+class Solution {
+public:
+bool isPal(string str, int start, int end)
+    {
+        while(start <= end)
+        {
+            if(str[start++] != str[end--])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    void funct( vector<vector<string>> &res, vector<string> &path, int index, string str)
+    {
+        if(index == str.size())
+        {
+            res.push_back(path);
+            return;
+        }
+        for(int i=index; i<str.size(); ++i)
+        {
+            if(isPal(str, index, i))
+            {
+                path.push_back(str.substr(index, i-index+1));
+                funct(res, path, i+1, str);
+                path.pop_back(); //backtracking
+            }
+        }
+    }
+    vector<vector<string>> partition(string S) {
+        vector<vector<string>> res;
+        vector<string> path;
+        
+        funct(res, path, 0, S);
+        return res;
+    }
+};
