@@ -1,12 +1,12 @@
-# Data Structures and Algorithms Solutions
+# Data Structures and Algorithms Solutions 📚
 
 This repository contains my solutions to various Data Structures and Algorithms (DSA) questions from LeetCode, CodeChef, CodeStudio, and GeeksforGeeks.
 
-## Overview
+## Overview 🌟
 
 In this repository, you'll find solutions to DSA questions categorized by platforms. Each platform has its own directory containing solutions in different programming languages.
 
-## Platforms
+## Platforms 🖥️
 
 ### LeetCode
 
@@ -28,7 +28,7 @@ In this repository, you'll find solutions to DSA questions categorized by platfo
 - [GeeksforGeeks Directory](geeksforgeeks/)
   - Solutions to GeeksforGeeks problems.
 
-## Usage
+## Usage 🛠️
 
 1. Clone the repository:
 
