@@ -9,9 +9,7 @@ In this repository, you'll find solutions to DSA questions categorized by platfo
 ## Platforms 🖥️
 
 ### LeetCode
-
-- [LeetCode Directory](leetcode/)
-  - Solutions to LeetCode problems.
+(https://leetcode.com/pawarprathmesh2121/)
 
 ### CodeChef
 
