@@ -8,23 +8,16 @@ In this repository, you'll find solutions to DSA questions categorized by platfo
 
 ## Platforms 🖥️
 
-### LeetCode
-(https://leetcode.com/pawarprathmesh2121/)
+### LeetCode : https://leetcode.com/pawarprathmesh2121/
 
-### CodeChef
+### HackerRank : https://www.hackerrank.com/profile/pawarprathmesh21
 
-- [CodeChef Directory](codechef/)
-  - Solutions to CodeChef problems.
+### CodeChef : https://www.codechef.com/users/prathmeshp2121
 
-### CodeStudio
+### CodeStudio : https://www.codingninjas.com/studio/profile/Prathamesh_2121
 
-- [CodeStudio Directory](codestudio/)
-  - Solutions to CodeStudio problems.
+### GeeksforGeeks : https://auth.geeksforgeeks.org/user/pawar_prathmesh2121
 
-### GeeksforGeeks
-
-- [GeeksforGeeks Directory](geeksforgeeks/)
-  - Solutions to GeeksforGeeks problems.
 
 ## Usage 🛠️
 
